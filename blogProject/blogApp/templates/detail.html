@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'detailStyle.css'%}" />
+  </head>
+  <body style="">
+    <h2 style="position: relative; left: 5%; font-weight: 200;">🍀 {{article_detail.title}} </h2>
+    <div style=
+    "width: 90%;
+    flex-direction: column;
+    border: 2px solid rgb(33, 40, 35);
+    background-color: rgb(212, 232, 219);
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+    left: 4%; height: 400px;">{{article_detail.content}}</div>
+    </br>
+    <div class="writtenDateTime" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: rgb(13, 89, 64); font-style: oblique; position: relative; left: 80%;">{{created_datetime}}</div>
+    <div>
+    <form method="POST">
+      {% csrf_token %}
+      <div style="position: relative; left: 5%;" >✉ 
+      <input type="text" name="content" placeholder="댓글을 입력해주세요" />
+      <button type="submit">작성하기</button>
+      </div>
+    </form>
+    </br>
+    <div class="comment" style=
+    "width: 90%;
+    flex-direction: column;
+    border: 2px dashed rgb(38, 23, 23);
+    background-color:rgb(212, 232, 219);
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+    left: 4%;">
+     {% for comment in article_detail.comments.all %}
+       <div>✉ {{comment.content}}<a href="{% url 'delete-comment' article_detail.id comment.id %}" style="color: rgb(76, 66, 66); font-size: 10px;">_____ 삭제 🗑</a></div>
+       <form action="{% url 'double_comment' article_detail.id comment.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" placeholder="대댓글을 입력해주세요" />
+        <button type="submit">전송</button>
+        </form>
+       
+        {% for double_comment in comment.double_comments.all %}
+        <div style="font-weight: 200; font-size: 13px;"> ↪ {{double_comment.content}}<a href="{% url 'delete_double_comment' article_detail.id comment.id double_comment.id %}" style="color: rgb(76, 66, 66); font-size: 8px;">__ 삭제 🗑</a></div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </br> </br> </br>
+    <a href="{% url 'list'%}" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: rgb(13, 89, 64); position:relative; left:65px;">Back to List .</a>
+  </br> </br> </br> </br>
+    <footer style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman';">
+      <p>
+          <span>author : PSJ</span><br/>
+          <span>email : sj30899@gmail.com</span><br/>
+          <span>Copyright 2023. PSJ. All Rights Reserved.</span>
+      </p>
+  </footer>
+  </body>
+</html>

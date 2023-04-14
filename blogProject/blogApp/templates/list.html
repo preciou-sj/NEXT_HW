@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article List</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'listStyle.css'%}"/>
+</head>
+    <body>
+        <h2>✨ Daily Life .✨</h2>
+        <div class="categoryContainer">
+            <div class = "categoryItem">
+                <a href="{%url 'category' 'hobby'%}">hobby [{{hobbies_len}}]</a>
+                <div class="imgShow">
+                    <img src="https://i.pinimg.com/564x/5e/84/77/5e8477ef66d7f8cf965245b24faea4bf.jpg" style="height: 250px;">
+                </div>
+            </div>
+            <div class = "categoryItem">
+                <a href="{%url 'category' 'food'%}">food [{{foods_len}}]</a>
+                <div class="imgShow">
+                    <img src="https://i.pinimg.com/564x/e9/d1/1b/e9d11bc5d34b07dd5f047bdc55c35c3c.jpg" style="height: 250px;">
+                </div>
+            </div>
+            <div class = "categoryItem">
+                <a href="{%url 'category' 'programming'%}">programming [{{programmings_len}}]</a>
+                <div class="imgShow">
+                    <img src="https://i.pinimg.com/564x/34/ec/e7/34ece73f99e894e44897e15376434eaa.jpg" style="height: 250px;">
+                </div>
+            </div>
+        </div>
+        </br>
+        </br>
+        </br>
+        <a href="{% url 'new'%}" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color:rgb(43, 94, 40)"> ✏️ Add Post</a>
+    </body>
+</html>

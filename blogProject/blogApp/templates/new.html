@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Article</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'newStyle.css'%}">
+</head>
+    <body style="text-align: center; border: 1px dashed rgb(27, 23, 20);">
+        <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Writing Page .</h2>
+        <form action="/new" method="post">
+            {% csrf_token %}
+            <div>
+                <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Category</div>
+                <div>
+                    <select name="category" id="">
+                        <option value="hobby">hobby</option>
+                        <option value="food">food</food>
+                        <option value="programming">programming</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">title</div>
+                <input type="text" name="title" />
+            </div>
+            <div>
+                <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">content</div>
+                <textarea name="content" cols="30" rows="10" ></textarea>
+            </div>
+            <button type="submit">Post</button>
+        </form>
+    </body>
+</html>

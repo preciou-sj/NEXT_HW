@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'categoryStyle.css'%}">
+</head>
+<body>
+    <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center;">{{category_kind_templates}} Category List</h2>
+
+    <div class="content"  style="width: 30%;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed rgb(46, 42, 42);
+    background-color: rgb(168, 223, 179);;
+    padding: 16px;
+    box-sizing: border-box;
+    align-items: center;
+    position: relative;
+    left: 34.3%; height: 400px;">
+        <ul class="list">
+            {%for article in categorized_articles%}
+            <a class='Detail' style="color: black; position: relative; left: -35px;" href="{%url 'detail' article.id%}"><div>◡̈⃝✩‧₊ {{article.title}}</div></a>
+            {%endfor%}
+        </ul>
+    </div>
+    
+</body>
+</html>
