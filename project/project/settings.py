@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$u_78youuhw(vk(&1l3m9gy9#zhzuontp_ybw$*!u01^+jv%vo'
+SECRET_KEY = 'k3@@-e@7757$leb7$)9=zufq^!4-c^e*v--jb2-*6&c1%3u(#m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,17 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'django.contrib.sites',
-    #Django-allauth
-    'allauth',
-    'allauth.account', 
-    'allauth.socialaccount',
-
-    'allauth.socialaccount.providers.kakao', 
-    'allauth.socialaccount.providers.google',
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,12 +119,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-AUTHENTICATION_BACKENDS = [
-# Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-# `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend', ]
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'

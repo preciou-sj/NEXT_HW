@@ -1,89 +1,28 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
-    {% load account socialaccount %} 
-    {% providers_media_js %}
-    {% load static %}
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="{% static 'favicon.png' %}" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ceviche+One&family=Inter:wght@900&family=Jua&family=Koulen&display=swap"
       rel="stylesheet"
+      type="text/css"
+      href="{% static 'base.css' %}?v=0.1"
     />
-    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
-    {% block css %} {% endblock css %}
-    <title>Project</title>
+    <title>My Blog</title>
   </head>
 
-  <body style="background-image: url(	https://i.pinimg.com/564x/3d/75/d8/3d75d8e0d9e3b10803644d88a7e0fae9.jpg); background-size: cover;">
-    <nav id="navbar">
-      <div class="navbar__logo">
-        <a href="#" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">SJ's Blog ◡̈⃝</a>
-      </div>
-      <ul class="navbar__menu">
-        <li class="navbar__menu__item">
-          <a href="{% url 'new' %}">New ✍</a>
-        </li>
-        <li class="navbar__menu__item">
-          <a href="{% url 'home' %}" style="position: relative; top: -3px; color: rgb(10, 167, 78);">Home 𖣰</a>
-        </li>
-        {% if user.is_authenticated %}
-        <span class="navbar__menu__item">Hello, {{user.username}}</span>
-        <li class="navbar__menu__item">
-          <a href="{% url 'logout'%}">Logout ⏻</a>
-        </li>
-        {% else %}
-        <li class="navbar__menu__item">
-          <a href="{% url 'login'%}" style="color: #3682b8;">sign in</a>
-        </li>
-        <li class="navbar__menu__item">
-          <a href="{% url 'signup'%}" style="color: #e67ec0;">sign up</a>
-        </li>
-        <li class="navbar__menu__item"></li>
-        <form
-            class="login"
-            method = "POST"
-            action="{% provider_login_url 'kakao' %}" >
-                       {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
-                        <input
-                       type ="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}"
-                        />
-                       {% endif %}
-                        <button style=" position: relative; top: -3px;" class = "primaryAction"
-           type="submit"><img src="../static/kakao_logo.png" style="width: 15px; position: relative; top: 3px;"> <a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">With Kakao</a></button> 
-          </form> 
-          </li>
-          <li class="navbar__menu__item"></li>
-          <form
-              class="login"
-              method = "POST"
-              action="{% provider_login_url 'google' %}" >
-                        {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
-                          <input
-                        type ="hidden"
-                        name="{{ redirect_field_name }}"
-                        value="{{ redirect_field_value }}"
-                          />
-                        {% endif %}
-                          <button class = "primaryAction"
-            type="submit" style="position: relative; top: -3px;"><img src="../static/google_logo.png" style="width: 15px; position: relative; top: 3px;"><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"> with Google</a></button> 
-            </form> 
-          </li>
-          {% endif %}
-        <!--<li class="navbar__menu__item">
-          <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
-          </li>
-          <li class="navbar__menu__item">
-          <a href="{% provider_login_url 'google' %}"> 구글 로그인 </a> </li> -->
-      </ul>
-    </nav>
-    <div class="title">{% block title %} {% endblock title %}</div>
-    <div class="container">{% block content %} {% endblock content %}</div>
+  <body>
+    <div class="nav-bar">
+      <a class="nav-item" href="{% url 'home' %}">HOME</a>
+      {% if user.is_authenticated %}
+      <div class="nav-item">안녕하세요, {{ user.username }}님</div>
+      <a class="nav-item" href="{% url 'mypage' %}"> 마이페이지 </a>
+      <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
+      {% else %}
+      <a class="nav-item" href="{% url 'login' %}">로그인</a>
+      <a class="nav-item" href="{% url 'signup' %}">회원가입</a>
+      {% endif %}
+    </div>
+    {% block content %} {% endblock content %}
   </body>
 </html>
